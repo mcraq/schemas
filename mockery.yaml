@@ -1,0 +1,40 @@
+$schema: 'http://json-schema.org/draft-07/schema#'
+$id: 'https://github.com/vektra/mockery/config'
+$ref: '#/definitions/root'
+definitions:
+  root:
+    allOf:
+      - $ref: '#/definitions/config'
+      - type: object
+        properties:
+          packages:
+            additionalProperties: { $ref: '#/definitions/package' }
+  config:
+    type: object
+    properties:
+      all: { type: boolean }
+      boilerplate-file: { type: string }
+      dir: { type: string }
+      disable-config-search: { type: boolean }
+      disable-version-string: { type: boolean }
+      exclude:
+        type: array
+        items: { type: string }
+      exclude-regex: { type: string }
+      filename: { type: string }
+      include-auto-generated: { type: boolean }
+      include-regex: { type: string }
+      inpackage: { type: boolean }
+      mock-build-tags: { type: string }
+      mockname: { type: string }
+      outpkg: { type: string }
+      recursive: { type: boolean }
+      tags: { type: string }
+      with-expecter: { type: boolean }
+  package:
+    type: object
+    properties:
+      config: { $ref: '#/definitions/config' }
+      interfaces:
+        type: object
+        additionalProperties: { $ref: '#/definitions/config' }
